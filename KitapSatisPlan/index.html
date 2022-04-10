@@ -1,0 +1,16 @@
+1. Projenin veritabanının ve ilişkilerin kurulması yapılır.
+2. İlk tablo KITAPLAR. Her kitabın kendine has numarası olacağı için tabloda ilk column Id. Bu Id üzerinden kitapları CRUD
+   işlemleri yapılacak.
+3. Her kitap eklendiğinde Id otomatik artması için tüm tabloların Identity Specification enable konuma getirilir.
+   Tabloda sırasıyla Ad, Açiklama, Fiyat, Stok (Satılan kitap Sql Triggers methodu ile stoktan düşer),
+   Populer ( bit olabilir true-false için ), resim, kategoriId columnları olacak. KategoriId, kategoriler tablosundan gelecek.
+4. Her satırın farklı olmasını garantilemek için tabloların ilk değerleri primary key (Birincil Anahtar) işaretlenir.
+5. Kategori tablosu oluşturulur. Columnlar Id, Ad, Aciklama.
+6. Sepet tablosu, Id, KitapId, Adet, Fiyat, Tarih, Resim, KullaniciId (Kitabı sepete ekleyen kullanıcının Id 'sini alacağız).
+7. Satislar tablosu, Id, UrunId, Adet, Fiyat, Tarih, Resim, KullaniciId.
+8. Kullanici tablosu, Id, Ad, Soyad, Email, KullaniciAd, Sifre, SifreTekrar, Rol (Admin mi User mı)
+9. Tabloları diyagramda açıp ilişkiler kurulur.
+10. a-)Her kitabın bir kategorisi yani kategoriId si bulunur. Bu kategoriId Kategori tablosunda ki Id den gelecek.
+    b-)Kullanıcı tablosunda ki Id, hem Sepet tablosunda ki KullaniciId ile hemde Satislar tablosunda ki KullaniciId ile
+    ilişkilendirilir. Çünkü hangi kullanıcı satış yapmış, hangi kullanıcı sipariş vermiş, sepete kitap eklemiş vs.
+    anlamamız için..

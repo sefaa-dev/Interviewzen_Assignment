@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .grid-container {
+          display: grid;
+          grid-template-columns: auto auto auto;
+          background-color: #2196F3;
+          padding: 10px;
+        }
+        .grid-item {
+          background-color: rgba(255, 255, 255, 0.8);
+          border: 1px solid rgba(0, 0, 0, 0.8);
+          padding: 20px;
+          font-size: 30px;
+          text-align: center;
+          
+        }
+        </style>
+</head>
+<body>
+    
+   <div id="listele" class="grid-container"></div>
+
+   
+
+    <script>
+        var listele = document.getElementById("listele");
+        
+        fetch('http://dummy.restapiexample.com/api/v1/employees')
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data.data);
+                data.data.map((item, key) => {
+                        listele.innerHTML += `<div key={key} class="grid-item">
+                          Id: ${item.id}<br>
+                          Employee Name: ${item.employee_name}<br>
+                          Employee Salary: ${item.employee_salary}<br>
+                          Employee Age: ${item.employee_age}<br>                        
+                          Profile Image: <img width:"50" heigt:"50" src="${item.profile_image}"></div>`
+               
+                    })
+                 ;
+            })
+        
+        
+    </script>
+</body>
+</html>

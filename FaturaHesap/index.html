@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        input, #toplamTutar, #indirimliToplamTutar, #kdvliToplamTutar, #indirimTutari, #kdvTutari{
+            margin: 8px;
+            font-size: 12px;
+            padding: 6px;
+                      
+        }
+        span{
+            display:inline-block;
+            width: 160px;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div style="padding: 25px;">
+      <span>Birim Fiyatı</span>:<input type="number" id="birimFiyat" /><br>
+      <span>Miktar</span>:<input type="number" id="miktar" /><br>
+       <span>Toplam Tutar</span>:<span id="toplamTutar" ></span> <br><br><br><br>
+      <span>İndirim (%)</span>:<input type="number" id="indirim" /><br>
+       <span>İndirim Tutarı</span>:<span id="indirimTutari"></span> <br>
+      <span>İndirimli Toplam Tutar</span>:<span id="indirimliToplamTutar"></span><br><br><br><br>
+       <span>KDV (%)</span>:<input type="number" id="kdv" /><br>
+      <span>KDV Tutarı</span>:<span id="kdvTutari"></span> <br>
+     <span>KDV'li Toplam Tutar</span>:<span id="kdvliToplamTutar"></span><br>
+   
+    </div>
+
+<input type="submit" onclick="toplamTutarHesapla()" value="Hesapla">
+
+    <script>
+function toplamTutarHesapla() {
+  //toplam tutar
+  var birimFiyat = document.getElementById("birimFiyat").value;
+  var miktar = document.getElementById("miktar").value;
+  var toplamTutar = birimFiyat * miktar;
+  document.getElementById("toplamTutar").innerText = toplamTutar;
+
+  //indirim
+
+  var indirim = document.getElementById("indirim").value;
+  var indirimTutari = (toplamTutar * indirim / 100);
+  document.getElementById("indirimTutari").innerText = indirimTutari;
+
+  var indirimliToplamTutar = (toplamTutar - (toplamTutar * indirim) / 100);
+  document.getElementById("indirimliToplamTutar").innerText = indirimliToplamTutar;
+
+  //kdv' li indirim
+  var kdv = document.getElementById("kdv").value;
+  var kdvTutari = (toplamTutar * kdv / 100);
+  document.getElementById("kdvTutari").innerText = kdvTutari;
+
+  var kdvliToplamTutar = (indirimliToplamTutar - (indirimliToplamTutar * kdv) / 100);
+  document.getElementById("kdvliToplamTutar").innerText = kdvliToplamTutar;
+
+
+}
+</script>
+
+  </body>
+</html>
